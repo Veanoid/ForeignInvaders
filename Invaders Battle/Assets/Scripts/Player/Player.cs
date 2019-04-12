@@ -30,9 +30,18 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float moveVertical = Input.GetAxis("Vertical");
-      
-        Vector3 movement = new Vector3(0, 0.0f, moveVertical);
+        float moveHorizontal = 0;// = Input.GetAxis("Vertical");
+
+        if (Input.GetKey(MoveLeft))
+        {
+            moveHorizontal = 1;
+        }
+        if (Input.GetKey(MoveRight))
+        {
+            moveHorizontal = -1;
+        }
+
+        Vector3 movement = new Vector3(0, 0.0f, moveHorizontal);
         person.position += movement * m_speed * Time.deltaTime;
 
         Vector3 move = person.position;
@@ -43,15 +52,15 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(shoot))
 	    {
             GameObject temp = Instantiate(bullet, bulletSpawn.position, this.transform.localRotation);
-            temp.GetComponent<Bullet>().force = bulletSpeed * -bulletSpawn.forward;
+            temp.GetComponent<Bullet>().force = bulletSpeed * bulletSpawn.forward;
             temp.GetComponent<Bullet>().owner = player;
 
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collider)
     {
-       Bullet temp = collision.collider.gameObject.GetComponent<Bullet>();
+       Bullet temp = collider.gameObject.GetComponent<Bullet>();
         if (temp)
         {
             Health -= 1;

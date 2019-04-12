@@ -9,9 +9,9 @@ public class Shields : MonoBehaviour {
 
     private int Health = 10;
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collider)
     {
-        Bullet temp = collision.collider.gameObject.GetComponent<Bullet>();
+        Bullet temp = collider.gameObject.GetComponent<Bullet>();
         if (this.GetComponent<Owned>().owner != temp.owner)
         {
             if (temp)

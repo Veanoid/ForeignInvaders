@@ -16,9 +16,9 @@ public class Bullet : MonoBehaviour {
         this.transform.Translate(force * Time.deltaTime);
 	}
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collider)
     {
-        Owned other = collision.collider.gameObject.GetComponent<Owned>();
+        Owned other = collider.gameObject.GetComponent<Owned>();
         if (other)
         {
             if (owner == other.owner)

@@ -20,7 +20,8 @@ public class MainMenu : MonoBehaviour {
 
     public void start()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
+        Time.timeScale = 1;
     }
 
     public void quit()
